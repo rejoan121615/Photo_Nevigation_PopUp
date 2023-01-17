@@ -9,6 +9,7 @@
   max-width: 1120px;
   padding-left: 5px;
   padding-right: 5px;
+  position: relative;
 }
 @media only screen and (min-width: 768px) {
   .container {
@@ -53,6 +54,17 @@
     object-fit: cover;
     aspect-ratio: 1/1;
   }
+}
+
+button {
+  display: flex;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  column-gap: 7px;
+  font-size: 13px;
+  border-radius: 5px;
+  position: absolute;
 }
 
 /*# sourceMappingURL=style.css.map */
