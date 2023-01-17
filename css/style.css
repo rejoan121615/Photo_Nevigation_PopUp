@@ -65,6 +65,34 @@ button {
   font-size: 13px;
   border-radius: 5px;
   position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 0px 30px;
+  font-size: 17px;
+}
+header .left_arrow {
+  font-size: 19px;
+}
+header .share_wrap {
+  display: flex;
+  column-gap: 22px;
+}
+header .share_wrap div {
+  display: flex;
+  column-gap: 10px;
+}
+header .share_wrap div a {
+  color: black;
+}
+
+main {
+  margin-top: 60px;
 }
 
 /*# sourceMappingURL=style.css.map */
