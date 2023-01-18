@@ -91,8 +91,27 @@ header .share_wrap div a {
   color: black;
 }
 
-main {
-  margin-top: 60px;
+.topber_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0px 20px;
+}
+.topber_wrap span {
+  font-size: 16px;
+  font-weight: bold;
+}
+.topber_wrap button {
+  position: initial;
+  border: none;
+  background: none;
+}
+.topber_wrap div:last-child {
+  display: flex;
+  column-gap: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

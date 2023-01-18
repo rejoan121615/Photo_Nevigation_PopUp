@@ -62,6 +62,8 @@ button {
   right: 30px;
 }
 
+// Photo Gelary
+
 // Header
 header {
   display: flex;
@@ -90,6 +92,33 @@ header {
 
 // Main section
 
-main{
-    margin-top: 60px;
+// Slider 
+
+// Header 
+
+.topber_wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0px 20px;
+
+  span{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  button{
+    position: initial;
+    border: none;
+    background: none;
+  }
+  div:last-child{
+    display: flex;
+    column-gap: 20px;
+  }
 }
+
+
