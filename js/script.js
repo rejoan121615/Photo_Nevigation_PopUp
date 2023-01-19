@@ -30,10 +30,11 @@ const imageList = [
     "img/prod-img- (28).webp",
 ];
 
-
 // js functionality ------------------------------------------------------------------------------
 
-// image galllery ----------------------- 
+// global state
+var showOverlay = false;
+// image galllery -----------------------
 // elements
 const showAllBtn = document.querySelector("#show-all-photos");
 
@@ -59,12 +60,11 @@ function smImgGallerySlider() {
 
         // If we need pagination
         pagination: {
-          el: ".swiper-pagination",
-          type: 'fraction'
+            el: ".swiper-pagination",
+            type: "fraction",
         },
-
     });
-  return swiper;
+    return swiper;
 }
 
 // load img into the
@@ -82,27 +82,71 @@ function ProductGallery() {
         swiperSlider.appendChild(ImgCreator(img));
         swiperWrapper.appendChild(swiperSlider);
     });
-  
-  smImgGallerySlider();
+
+    smImgGallerySlider();
     // initialize the small screen swiper slider
     // large screen --------------
     // slice img list
     const highlightImg = imageList.slice(0, 5);
     highlightImg.map((img, index) => {
         const parentTag = document.querySelector(".img-gallery .lg-img-list");
-        parentTag.appendChild(ImgCreator(img, ".img-gallery .lg-img-list"));
+        const imgWrap = ImgCreator(img, ".img-gallery .lg-img-list");
+        // click handler
+        imgWrap.onclick = function () {
+            OverlayToggler();
+        };
+        // push img wrap inside parent
+        parentTag.appendChild(imgWrap);
     });
 }
 
-// overlay page on click ---------------------- 
+// overlay page on click ----------------------
 function OverlayImgLoader() {
-  const overlay = document.querySelector('.overlay');
-  const overlayImgList = overlay.querySelector('.img-list');
-  imageList.map((image) => {
-    overlayImgList.appendChild(ImgCreator(image));
-  })
+    const overlay = document.querySelector(".overlay");
+    const overlayImgList = overlay.querySelector(".img-list");
+    // large img number
+    const largeImgIndex = [];
+    for (let i = 1; i <= imageList.length; i += 3) {
+        largeImgIndex.push(i);
+    }
+    imageList.map((image, index) => {
+        const imgWrap = ImgCreator(image);
+        // if (index === index+)
+        if (Boolean(largeImgIndex.find((num) => num === index + 1))) {
+            imgWrap.style.gridColumn = "span 2";
+            imgWrap.style.gridRow = "span 2";
+        }
+        overlayImgList.appendChild(imgWrap);
+    });
 }
 
+// overlay toggler  --------------------------------------
+// overlay back button
+function overlayBackBtn() {
+    const backbtn = document.querySelector("#overlay-back-btn");
+    const showAllPhotos = document.querySelector("#show-all-photos");
+    [backbtn, showAllPhotos].map((btn) => {
+        btn.onclick = function () {
+            OverlayToggler();
+        };
+    });
+}
+
+overlayBackBtn();
+
+function OverlayToggler() {
+    const overlay = document.querySelector(".overlay");
+    // back button
+
+    // controller
+    if (showOverlay) {
+        overlay.style.display = "none";
+        showOverlay = false;
+    } else {
+        overlay.style.display = "grid";
+        showOverlay = true;
+    }
+}
 
 ProductGallery();
 OverlayImgLoader();
