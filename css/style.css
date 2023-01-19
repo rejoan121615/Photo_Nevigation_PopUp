@@ -129,10 +129,6 @@ body {
   transform: translateY(100%);
   opacity: 0;
 }
-.overlay.active {
-  transform: translateY(0%);
-  opacity: 1;
-}
 .overlay .overlay-header {
   width: 100%;
   padding-left: 20px;
@@ -177,8 +173,21 @@ body {
     max-width: 740px;
   }
 }
+.overlay .img-list .img-wrap {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-delay: 600ms;
+}
 .overlay .img-list .img-wrap img {
   display: inline-block;
+}
+.overlay.active {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.overlay.active .img-wrap {
+  opacity: 1;
 }
 
 .swiper {

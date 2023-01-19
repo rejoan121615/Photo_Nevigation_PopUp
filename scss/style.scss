@@ -130,13 +130,6 @@ body {
     left: 0px;
     top: 0px;
     z-index: 100;
-    transition: all 0.5s;
-    transform: translateY(100%);
-    opacity: 0;
-    &.active {
-        transform: translateY(0%);
-        opacity: 1;
-    }
     // overlay header
     .overlay-header {
         width: 100%;
@@ -182,6 +175,10 @@ body {
         }
 
         .img-wrap {
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.3s;
+            transition-delay: 600ms;
             img {
                 // object-fit: cover;
                 // aspect-ratio: 3/2;
@@ -189,6 +186,17 @@ body {
                 // height: 100%;
                 display: inline-block;
             }
+        }
+    }
+    // animation
+    transition: all 0.5s;
+    transform: translateY(100%);
+    opacity: 0;
+    &.active {
+        transform: translateY(0%);
+        opacity: 1;
+        .img-wrap {
+           opacity: 1; 
         }
     }
 }
