@@ -1,69 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body>
-    <!-- Secound section -->
-    <div>
-      <div class="container">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+        />
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <!-- Secound section -->
         <div>
-          <img
-            src="./img/97b5bdb92fc44cbdb1df189ccf52f0cc.webp"
-            alt="product img"
-          />
+            <div class="img-gallery">
+                <!-- for mobile screen  -->
+                <div class="swiper sm-img-list">
+                    <div class="swiper-wrapper">
+                        <!-- slides will push by js  -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!-- for desktop screen  -->
+                <div class="img-list lg-img-list">
+                    <!-- 5 img will push here with js  -->
+                </div>
+                <!-- show all button  -->
+                <button id="show-all-photos">
+                    <svg
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        role="presentation"
+                        focusable="false"
+                        style="
+                            display: block;
+                            height: 16px;
+                            width: 16px;
+                            fill: currentcolor;
+                        "
+                    >
+                        <path
+                            d="m3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
+                            fill-rule="evenodd"
+                        ></path>
+                    </svg>
+                    Show all photos
+                </button>
+            </div>
         </div>
-        <div>
-          <img
-            src="./img/caaf9d93021a41dcaed8ed3327a81ad3.webp"
-            alt="product img"
-          />
-        </div>
-        <div>
-          <img
-            src="./img/e4d2622dc4db41c99a787bf7aa0a12dc.webp"
-            alt="product img"
-          />
-        </div>
-        <div>
-          <img
-            src="./img/ef6254fc7cce400fbbedfc14ef7264f0.webp"
-            alt="product img"
-          />
-        </div>
-        <div>
-          <img
-            src="./img/fc6589f02dc04ee5938accd44578bab0.webp"
-            alt="product img"
-          />
-        </div>
-
-        <button>
-          <svg
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="presentation"
-            focusable="false"
-            style="
-              display: block;
-              height: 16px;
-              width: 16px;
-              fill: currentcolor;
-            "
-          >
-            <path
-              d="m3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-          Show all photos
-        </button>
-      </div>
-    </div>
-  </body>
+        <!-- script js  -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
