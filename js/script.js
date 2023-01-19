@@ -140,11 +140,17 @@ function OverlayToggler() {
 
     // controller
     if (showOverlay) {
-        overlay.style.display = "none";
+        overlay.classList.remove("active");
         showOverlay = false;
+        setTimeout(() => {
+            overlay.style.display = "none";
+        }, 400);
     } else {
-        overlay.style.display = "grid";
         showOverlay = true;
+        overlay.style.display = "grid";
+        setTimeout(() => {
+            overlay.classList.add("active");
+        }, 10);
     }
 }
 

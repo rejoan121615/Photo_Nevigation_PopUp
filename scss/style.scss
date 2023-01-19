@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 200vh;
+}
+
 // responsive
 @mixin resp() {
     @media only screen and (min-width: 768px) {
@@ -19,7 +23,6 @@
         cursor: pointer;
     }
 }
-
 
 .img-gallery {
     width: 100%;
@@ -127,6 +130,13 @@
     left: 0px;
     top: 0px;
     z-index: 100;
+    transition: all 0.5s;
+    transform: translateY(100%);
+    opacity: 0;
+    &.active {
+        transform: translateY(0%);
+        opacity: 1;
+    }
     // overlay header
     .overlay-header {
         width: 100%;
@@ -150,7 +160,6 @@
                 svg {
                     background-color: white;
                 }
-
             }
             .share-save {
                 display: flex;
