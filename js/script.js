@@ -1,4 +1,4 @@
-// input img list
+// input img list here -------------------------------------------
 const imageList = [
     "img/prod-img- (1).webp",
     "img/prod-img- (2).webp",
@@ -30,6 +30,10 @@ const imageList = [
     "img/prod-img- (28).webp",
 ];
 
+
+// js functionality ------------------------------------------------------------------------------
+
+// image galllery ----------------------- 
 // elements
 const showAllBtn = document.querySelector("#show-all-photos");
 
@@ -90,4 +94,15 @@ function ProductGallery() {
     });
 }
 
+// overlay page on click ---------------------- 
+function OverlayImgLoader() {
+  const overlay = document.querySelector('.overlay');
+  const overlayImgList = overlay.querySelector('.img-list');
+  imageList.map((image) => {
+    overlayImgList.appendChild(ImgCreator(image));
+  })
+}
+
+
 ProductGallery();
+OverlayImgLoader();
