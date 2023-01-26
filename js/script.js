@@ -56,58 +56,63 @@ function Slider(parentTag, imgUrlList) {
     const sliderContainer = parentTag.querySelector(".slider-container");
     const sliderImgWrap = parentTag.querySelector(".slider-wrap");
     // set wrapper width
-    sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
-    sliderImgWrap.style.paddingBottom = `67%`;
-    sliderImgWrap.style.height = `0`;
+    if (sliderImgWrap) {
+        sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
+        sliderImgWrap.style.paddingBottom = `67%`;
+        sliderImgWrap.style.height = `0`;
 
-    // load img
+        // load img
 
-    // all img
-    imgUrlList.map((item, index) => {
-        const slidesDiv = document.createElement("div");
-        slidesDiv.classList = "slides";
-        const slideImg = document.createElement("img");
-        slideImg.src = `${item}`;
-        slidesDiv.appendChild(slideImg);
-        sliderImgWrap.appendChild(slidesDiv);
-        // overlay toggler 
-        slidesDiv.onclick = () => {
-            OverlayToggler();
-        }
-    });
-    // slider counter ------------------------
-    var counter = 0;
-    //  slide
-    const leftBtn = parentTag.querySelector(".left-btn");
-    const rightBtn = parentTag.querySelector(".right-btn");
-    // move left
-    const moveLeft = () => {
-        if (-(imgUrlList.length - 1) < counter) {
-            --counter;
-        } 
-        const allImg = document.querySelectorAll(".slider .slides");
-        allImg.forEach((img) => {
-            img.style.transform = `translateX(${100 * counter}%)`;
+        // all img
+        imgUrlList.map((item, index) => {
+            const slidesDiv = document.createElement("div");
+            slidesDiv.classList = "slides";
+            const slideImg = document.createElement("img");
+            slideImg.src = `${item}`;
+            slidesDiv.appendChild(slideImg);
+            sliderImgWrap.appendChild(slidesDiv);
+            // overlay toggler
+            slidesDiv.onclick = () => {
+                OverlayToggler();
+            };
         });
-    };
-    // move right
-    const moveRight = () => {
-        if (!(counter == 0)) {
-            ++counter;
-        } 
-        const allImg = document.querySelectorAll(".slider .slides");
-        allImg.forEach((img) => {
-            img.style.transform = `translateX(${100 * counter}%)`;
-        });
-    };
-    // move left on click
-    rightBtn.onclick = function () {
-        moveRight();
-    };
-    // move right on click
-    leftBtn.onclick = function () {
-        moveLeft();
-    };
+        // slider counter ------------------------
+        var counter = 0;
+        //  slide
+        const leftBtn = parentTag.querySelector(".left-btn");
+        const rightBtn = parentTag.querySelector(".right-btn");
+        // move left
+        const moveLeft = () => {
+            if (-(imgUrlList.length - 1) < counter) {
+                --counter;
+            }
+            const allImg = document.querySelectorAll(".slider .slides");
+            allImg.forEach((img) => {
+                img.style.transform = `translateX(${100 * counter}%)`;
+            });
+        };
+        // move right
+        const moveRight = () => {
+            if (!(counter == 0)) {
+                ++counter;
+            }
+            const allImg = document.querySelectorAll(".slider .slides");
+            allImg.forEach((img) => {
+                img.style.transform = `translateX(${100 * counter}%)`;
+            });
+        };
+        // move left on click
+        rightBtn.onclick = function () {
+            moveRight();
+        };
+        // move right on click
+        leftBtn.onclick = function () {
+            moveLeft();
+        };
+    } else {
+        console.log('please create a slider div inside slider-container name slider-wrap')
+    }
+
 }
 
 // Slider();

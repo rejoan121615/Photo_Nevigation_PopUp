@@ -50,10 +50,25 @@ body {
             }
         }
     }
+    button {
+        background-color: transparent;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: aliceblue;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        img {
+            width: 50%;
+        }
+    }
     // left right btn
 }
 
-// image gallery ----------------------------------------------------------- 
+// image gallery -----------------------------------------------------------
 .img-gallery {
     width: 100%;
     max-width: 1120px;
@@ -89,21 +104,6 @@ body {
             width: 90%;
             bottom: 30px;
             left: 5%;
-            button {
-                background-color: transparent;
-                width: 35px;
-                height: 35px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: aliceblue;
-                border: none;
-                border-radius: 50%;
-                cursor: pointer;
-                img {
-                    width: 50%;
-                }
-            }
         }
     }
 
@@ -172,7 +172,6 @@ body {
         border: 1px solid #514f50;
     }
 }
-
 
 // overlay page
 .overlay {
@@ -269,23 +268,68 @@ body {
     }
 }
 
-
-// light box 
+// light box
 .light-box {
-    position: absolute;
+    position: fixed;
     @extend .overlay;
     z-index: 100;
     transform: translate(0);
     background-color: black;
     opacity: 1;
     display: grid;
+    @include resp() {
+        grid-template:
+            "title" 60px
+            "img-list" calc(100vh - 60px);
+    }
     .back {
-        background-color: black!important;
+        background-color: black !important;
+    }
+
+    .slider {
+        display: flex;
+        align-items: center;
+
+        .slider-pagi-wrap {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 650px;
+        }
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            top: calc(50% - 25px);
+            padding-left: 20px;
+            padding-right: 20px;
+            @include resp() {
+                padding-left: 80px;
+                padding-right: 80px;
+            }
+            button {
+                background-color: transparent!important;
+                border: 2px solid white;
+                @include resp() {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
     }
 
     .share-save {
         button {
-            background-color: transparent!important;
+            background-color: transparent !important;
             color: white;
         }
     }
