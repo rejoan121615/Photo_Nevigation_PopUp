@@ -52,38 +52,105 @@ function ImgCreator(imgUrl) {
 }
 
 // img gallery sm screen slider
-function smImgGallerySlider() {
-    const swiper = new Swiper(".swiper", {
-        // Optional parameters
-        direction: "horizontal",
-        loop: true,
+function smImgGallerySlider() {}
 
-        // If we need pagination
-        pagination: {
-            el: ".swiper-pagination",
-            type: "fraction",
-        },
+// screen slider
+function Slider() {
+    const slideImg = [
+        "img/prod-img- (1).webp",
+        "img/prod-img- (2).webp",
+        "img/prod-img- (3).webp",
+        "img/prod-img- (4).webp",
+        "img/prod-img- (5).webp",
+        "img/prod-img- (6).webp",
+        "img/prod-img- (7).webp",
+        "img/prod-img- (8).webp",
+        "img/prod-img- (9).webp",
+        "img/prod-img- (10).webp",
+        "img/prod-img- (11).webp",
+        "img/prod-img- (12).webp",
+        "img/prod-img- (13).webp",
+        "img/prod-img- (14).webp",
+        "img/prod-img- (15).webp",
+    ];
+
+    const sliderTag = document.querySelector(".sm-slider");
+    const sliderContainer = document.querySelector(
+        ".sm-slider .slider-container"
+    );
+    const sliderImgWrap = document.querySelector(".sm-slider .slider-wrap");
+    // set wrapper width
+    sliderImgWrap.style.width = `${slideImg.length * 100}%`;
+    sliderImgWrap.style.paddingBottom = `67%`;
+    sliderImgWrap.style.height = `0`;
+
+    // load img
+
+    // all img
+    slideImg.map((item, index) => {
+        const slidesDiv = document.createElement("div");
+        slidesDiv.classList = "slides";
+        const slideImg = document.createElement("img");
+        slideImg.src = `${item}`;
+        slidesDiv.appendChild(slideImg);
+        sliderImgWrap.appendChild(slidesDiv);
     });
-    return swiper;
+    // slider counter ------------------------
+    var counter = 0;
+    //  slide
+    const leftBtn = document.querySelector(".sm-slider .left-btn");
+    const rightBtn = document.querySelector(".sm-slider .right-btn");
+    // move left
+    const moveLeft = () => {
+        if (-(slideImg.length - 1 ) < counter) {
+            console.log('counter', counter);
+            console.log('slidem img length', -slideImg.length)
+            --counter;
+        }
+        const allImg = document.querySelectorAll(".sm-slider .slides");
+        allImg.forEach((img) => {
+            img.style.transform = `translateX(${100 * counter}%)`;
+        });
+    };
+    // move right
+    const moveRight = () => {
+        if (!(counter == 0)) {
+            ++counter;
+        }
+        const allImg = document.querySelectorAll(".sm-slider .slides");
+        allImg.forEach((img) => {
+            img.style.transform = `translateX(${100 * counter}%)`;
+        });
+    };
+    // move left on click
+    rightBtn.onclick = function () {
+        moveRight();
+    };
+    // move right on click
+    leftBtn.onclick = function () {
+        moveLeft();
+    };
 }
+
+Slider();
 
 // load img into the
 function ProductGallery() {
     const imgGallery = document.querySelector(".img-gallery");
 
     // small screen -----------------
-    const swiperWrapper = imgGallery.querySelector(
-        ".sm-img-list .swiper-wrapper"
-    );
-    imageList.map((img) => {
-        // create swiper slider div
-        const swiperSlider = document.createElement("div");
-        swiperSlider.classList.add("swiper-slide");
-        swiperSlider.appendChild(ImgCreator(img));
-        swiperWrapper.appendChild(swiperSlider);
-    });
+    // const swiperWrapper = imgGallery.querySelector(
+    //     ".sm-img-list .swiper-wrapper"
+    // );
+    // create swiper slider div
+    // imageList.map((img) => {
+    //     const swiperSlider = document.createElement("div");
+    //     swiperSlider.classList.add("swiper-slide");
+    //     swiperSlider.appendChild(ImgCreator(img));
+    //     swiperWrapper.appendChild(swiperSlider);
+    // });
 
-    smImgGallerySlider();
+    // smImgGallerySlider();
     // initialize the small screen swiper slider
     // large screen --------------
     // slice img list
