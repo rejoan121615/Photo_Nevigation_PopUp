@@ -159,6 +159,7 @@ body {
         @include resp() {
             display: flex;
         }
+        cursor: pointer;
         padding: 5px 15px;
         justify-content: center;
         align-items: center;

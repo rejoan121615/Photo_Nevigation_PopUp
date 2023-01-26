@@ -70,20 +70,16 @@ function Slider(parentTag, imgUrlList) {
         slideImg.src = `${item}`;
         slidesDiv.appendChild(slideImg);
         sliderImgWrap.appendChild(slidesDiv);
+        // overlay toggler 
+        slidesDiv.onclick = () => {
+            OverlayToggler();
+        }
     });
     // slider counter ------------------------
     var counter = 0;
     //  slide
     const leftBtn = parentTag.querySelector(".left-btn");
     const rightBtn = parentTag.querySelector(".right-btn");
-    // disable left right btn
-    // if (counter == 0) {
-    //     rightBtn.classList.add("disable");
-    //     leftBtn.classList.remove("disable");
-    // } else {
-    //     rightBtn.classList.remove("disable");
-    //     leftBtn.classList.add("disable");
-    // }
     // move left
     const moveLeft = () => {
         if (-(imgUrlList.length - 1) < counter) {
@@ -123,23 +119,6 @@ allSlide.forEach((sliderTag) => {
 // load img into the
 function ProductGallery() {
     const imgGallery = document.querySelector(".img-gallery");
-
-    // small screen -----------------
-    // const swiperWrapper = imgGallery.querySelector(
-    //     ".sm-img-list .swiper-wrapper"
-    // );
-    // create swiper slider div
-    // imageList.map((img) => {
-    //     const swiperSlider = document.createElement("div");
-    //     swiperSlider.classList.add("swiper-slide");
-    //     swiperSlider.appendChild(ImgCreator(img));
-    //     swiperWrapper.appendChild(swiperSlider);
-    // });
-
-    // smImgGallerySlider();
-    // initialize the small screen swiper slider
-    // large screen --------------
-    // slice img list
     const highlightImg = imageList.slice(0, 5);
     highlightImg.map((img, index) => {
         const parentTag = document.querySelector(".img-gallery .lg-img-list");

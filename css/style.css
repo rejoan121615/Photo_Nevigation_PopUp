@@ -137,6 +137,7 @@
 }
 .img-gallery #show-all-photos {
   display: none;
+  cursor: pointer;
   padding: 5px 15px;
   justify-content: center;
   align-items: center;
