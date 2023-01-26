@@ -24,7 +24,7 @@ body {
     }
 }
 // base slider style
-.sm-slider {
+.slider {
     // slider container
     .slider-container {
         width: 100%;
@@ -269,3 +269,24 @@ body {
     }
 }
 
+
+// light box 
+.light-box {
+    position: absolute;
+    @extend .overlay;
+    z-index: 100;
+    transform: translate(0);
+    background-color: black;
+    opacity: 1;
+    display: grid;
+    .back {
+        background-color: black!important;
+    }
+
+    .share-save {
+        button {
+            background-color: transparent!important;
+            color: white;
+        }
+    }
+}
