@@ -231,78 +231,16 @@
   opacity: 1;
 }
 
-.lightbox-slider {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template: "title" 100px "img-list" calc(100vh - 100px);
-  background-color: white;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 200;
-  display: none;
-  transition: all 0.5s;
-}
-.lightbox-slider .overlay-header {
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 60px;
-}
-.lightbox-slider .overlay-header .btn-wrap {
-  width: 100%;
-  height: 100%;
+.back {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
-.lightbox-slider .overlay-header .btn-wrap button {
-  border: none;
-  background-color: white;
-  display: flex;
-  column-gap: 8px;
-  text-decoration: underline;
-  font-weight: 600;
-  cursor: pointer;
-}
-.lightbox-slider .overlay-header .btn-wrap button svg {
-  background-color: white;
-}
-.lightbox-slider .overlay-header .btn-wrap .share-save {
-  display: flex;
-  align-items: center;
-  column-gap: 20px;
-}
-.lightbox-slider .img-list {
+.back img {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-@media only screen and (min-width: 768px) {
-  .lightbox-slider .img-list {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 740px;
-  }
-}
-.lightbox-slider .img-list .img-wrap {
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.3s;
-  transition-delay: 600ms;
-}
-.lightbox-slider .img-list .img-wrap img {
-  display: inline-block;
-}
-.lightbox-slider.active {
-  transform: translateY(0%);
-  opacity: 1;
-}
-.lightbox-slider.active .img-wrap {
-  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */
