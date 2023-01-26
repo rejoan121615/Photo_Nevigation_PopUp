@@ -275,8 +275,8 @@ body {
     z-index: 100;
     transform: translate(0);
     background-color: black;
-    opacity: 1;
-    display: grid;
+    // opacity: 1;
+    // display: grid;
     @include resp() {
         grid-template:
             "title" 60px

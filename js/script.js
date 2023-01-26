@@ -34,6 +34,7 @@ const imageList = [
 
 // global state
 var showOverlay = false;
+var showLightBox = false;
 // image galllery -----------------------
 // elements
 const showAllBtn = document.querySelector("#show-all-photos");
@@ -148,6 +149,9 @@ function OverlayImgLoader() {
     }
     imageList.map((image, index) => {
         const imgWrap = ImgCreator(image);
+        imgWrap.onclick = () => {
+            LightBoxToggler();
+        }
         // if (index === index+)
         if (Boolean(largeImgIndex.find((num) => num === index + 1))) {
             imgWrap.style.gridColumn = "span 2";
@@ -190,6 +194,38 @@ function OverlayToggler() {
         }, 10);
     }
 }
+
+
+function LightBoxBackBtn() {
+    const backbtn = document.querySelector("#light-back-btn");
+    backbtn.onclick = function () {
+        LightBoxToggler();
+    }
+}
+
+LightBoxBackBtn();
+
+
+function LightBoxToggler() {
+    const lightBox = document.querySelector(".light-box");
+    // back button
+
+    // controller
+    if (showLightBox) {
+        lightBox.classList.remove("active");
+        showLightBox = false;
+        setTimeout(() => {
+            lightBox.style.display = "none";
+        }, 400);
+    } else {
+        showLightBox = true;
+        lightBox.style.display = "grid";
+        setTimeout(() => {
+            lightBox.classList.add("active");
+        }, 10);
+    }
+}
+
 
 ProductGallery();
 OverlayImgLoader();
