@@ -5,10 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-        />
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
@@ -16,15 +12,26 @@
 
         <div class="img-gallery">
             <!-- for mobile screen  -->
-            <div class="sm-slider sm-img-list">
+            <div class="sm-slider sm-img-list-slider">
                 <div class="slider-container">
                     <!-- slider slides  -->
                     <div class="slider-wrap">
                         <!-- load img with js -->
                     </div>
                     <!-- pagination  -->
-                    <button class="left-btn">left-btn</button
-                    ><button class="right-btn">right-btn</button>
+                    <div class="pagination">
+                        <button class="left-btn">
+                            <img
+                                src="./img/icons/left-arrow.png"
+                                alt="slider arrow icon"
+                            /></button
+                        ><button class="right-btn">
+                            <img
+                                src="./img/icons/right-arrow.png"
+                                alt="slider arrow icon"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- for desktop screen  -->
@@ -229,7 +236,6 @@
             </div>
         </div>
         <!-- script js  -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
         <script src="js/script.js"></script>
     </body>
 </html>

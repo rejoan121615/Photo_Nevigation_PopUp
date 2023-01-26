@@ -13,6 +13,26 @@
   cursor: pointer;
 }
 
+.sm-slider .slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.sm-slider .slider-wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+}
+.sm-slider .slider-wrap .slides {
+  width: 100%;
+  transition: all 0.9s;
+}
+.sm-slider .slider-wrap .slides img {
+  width: 100%;
+  display: inline-block;
+  aspect-ratio: 3/2;
+}
+
 .img-gallery {
   width: 100%;
   max-width: 1120px;
@@ -37,9 +57,33 @@
   overflow: hidden;
 }
 @media only screen and (min-width: 768px) {
-  .img-gallery .sm-img-list {
+  .img-gallery .sm-img-list-slider {
     display: none;
   }
+}
+.img-gallery .sm-img-list-slider .pagination {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  width: 90%;
+  bottom: 30px;
+  left: 5%;
+}
+.img-gallery .sm-img-list-slider .pagination button {
+  background-color: transparent;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.img-gallery .sm-img-list-slider .pagination button img {
+  width: 50%;
 }
 .img-gallery .lg-img-list {
   display: none;
@@ -258,43 +302,6 @@
 }
 .lightbox-slider.active .img-wrap {
   opacity: 1;
-}
-
-.sm-slider .slider-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.sm-slider .slider-wrap {
-  display: flex;
-  flex-flow: row nowrap;
-  overflow: hidden;
-}
-.sm-slider .slider-wrap .slides {
-  width: 100%;
-  transition: all 0.9s;
-}
-.sm-slider .slider-wrap .slides img {
-  width: 100%;
-  display: inline-block;
-}
-.sm-slider button {
-  background-color: aliceblue;
-  border: none;
-  width: 120px;
-  height: 50px;
-  position: absolute;
-  top: calc(50% - 50px);
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 20px;
-  text-transform: capitalize;
-}
-.sm-slider .left-btn {
-  left: 20px;
-}
-.sm-slider .right-btn {
-  right: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

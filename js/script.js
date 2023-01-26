@@ -1,5 +1,6 @@
 // input img list here -------------------------------------------
 const imageList = [
+    "img/prod-img- (20).webp",
     "img/prod-img- (1).webp",
     "img/prod-img- (2).webp",
     "img/prod-img- (3).webp",
@@ -19,7 +20,6 @@ const imageList = [
     "img/prod-img- (17).webp",
     "img/prod-img- (18).webp",
     "img/prod-img- (19).webp",
-    "img/prod-img- (20).webp",
     "img/prod-img- (21).webp",
     "img/prod-img- (22).webp",
     "img/prod-img- (23).webp",
@@ -51,15 +51,9 @@ function ImgCreator(imgUrl) {
     return img_wrap;
 }
 
-// img gallery sm screen slider
-function smImgGallerySlider() {}
-
 // screen slider
 function Slider(parentTag, imgUrlList) {
-    
-    const sliderContainer = parentTag.querySelector(
-        ".slider-container"
-    );
+    const sliderContainer = parentTag.querySelector(".slider-container");
     const sliderImgWrap = parentTag.querySelector(".slider-wrap");
     // set wrapper width
     sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
@@ -82,11 +76,19 @@ function Slider(parentTag, imgUrlList) {
     //  slide
     const leftBtn = parentTag.querySelector(".left-btn");
     const rightBtn = parentTag.querySelector(".right-btn");
+    // disable left right btn
+    // if (counter == 0) {
+    //     rightBtn.classList.add("disable");
+    //     leftBtn.classList.remove("disable");
+    // } else {
+    //     rightBtn.classList.remove("disable");
+    //     leftBtn.classList.add("disable");
+    // }
     // move left
     const moveLeft = () => {
-        if (-(imgUrlList.length - 1 ) < counter) {
+        if (-(imgUrlList.length - 1) < counter) {
             --counter;
-        }
+        } 
         const allImg = document.querySelectorAll(".sm-slider .slides");
         allImg.forEach((img) => {
             img.style.transform = `translateX(${100 * counter}%)`;
@@ -96,7 +98,7 @@ function Slider(parentTag, imgUrlList) {
     const moveRight = () => {
         if (!(counter == 0)) {
             ++counter;
-        }
+        } 
         const allImg = document.querySelectorAll(".sm-slider .slides");
         allImg.forEach((img) => {
             img.style.transform = `translateX(${100 * counter}%)`;
@@ -115,8 +117,8 @@ function Slider(parentTag, imgUrlList) {
 // Slider();
 const allSlide = document.querySelectorAll(".sm-slider");
 allSlide.forEach((sliderTag) => {
-    Slider(sliderTag, imageList)
-})
+    Slider(sliderTag, imageList);
+});
 
 // load img into the
 function ProductGallery() {
