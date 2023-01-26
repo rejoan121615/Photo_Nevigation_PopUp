@@ -55,39 +55,21 @@ function ImgCreator(imgUrl) {
 function smImgGallerySlider() {}
 
 // screen slider
-function Slider() {
-    const slideImg = [
-        "img/prod-img- (1).webp",
-        "img/prod-img- (2).webp",
-        "img/prod-img- (3).webp",
-        "img/prod-img- (4).webp",
-        "img/prod-img- (5).webp",
-        "img/prod-img- (6).webp",
-        "img/prod-img- (7).webp",
-        "img/prod-img- (8).webp",
-        "img/prod-img- (9).webp",
-        "img/prod-img- (10).webp",
-        "img/prod-img- (11).webp",
-        "img/prod-img- (12).webp",
-        "img/prod-img- (13).webp",
-        "img/prod-img- (14).webp",
-        "img/prod-img- (15).webp",
-    ];
-
-    const sliderTag = document.querySelector(".sm-slider");
-    const sliderContainer = document.querySelector(
-        ".sm-slider .slider-container"
+function Slider(parentTag, imgUrlList) {
+    
+    const sliderContainer = parentTag.querySelector(
+        ".slider-container"
     );
-    const sliderImgWrap = document.querySelector(".sm-slider .slider-wrap");
+    const sliderImgWrap = parentTag.querySelector(".slider-wrap");
     // set wrapper width
-    sliderImgWrap.style.width = `${slideImg.length * 100}%`;
+    sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
     sliderImgWrap.style.paddingBottom = `67%`;
     sliderImgWrap.style.height = `0`;
 
     // load img
 
     // all img
-    slideImg.map((item, index) => {
+    imgUrlList.map((item, index) => {
         const slidesDiv = document.createElement("div");
         slidesDiv.classList = "slides";
         const slideImg = document.createElement("img");
@@ -98,13 +80,11 @@ function Slider() {
     // slider counter ------------------------
     var counter = 0;
     //  slide
-    const leftBtn = document.querySelector(".sm-slider .left-btn");
-    const rightBtn = document.querySelector(".sm-slider .right-btn");
+    const leftBtn = parentTag.querySelector(".left-btn");
+    const rightBtn = parentTag.querySelector(".right-btn");
     // move left
     const moveLeft = () => {
-        if (-(slideImg.length - 1 ) < counter) {
-            console.log('counter', counter);
-            console.log('slidem img length', -slideImg.length)
+        if (-(imgUrlList.length - 1 ) < counter) {
             --counter;
         }
         const allImg = document.querySelectorAll(".sm-slider .slides");
@@ -132,7 +112,11 @@ function Slider() {
     };
 }
 
-Slider();
+// Slider();
+const allSlide = document.querySelectorAll(".sm-slider");
+allSlide.forEach((sliderTag) => {
+    Slider(sliderTag, imageList)
+})
 
 // load img into the
 function ProductGallery() {
