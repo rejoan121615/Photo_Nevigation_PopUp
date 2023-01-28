@@ -30,202 +30,307 @@ const imageList = [
     "img/prod-img- (28).webp",
 ];
 
-// js functionality ------------------------------------------------------------------------------
+// html markup creator
 
-// global state
-var showOverlay = false;
-var showLightBox = false;
-// image galllery -----------------------
-// elements
-const showAllBtn = document.querySelector("#show-all-photos");
-
-// this function create img tag and append
-function ImgCreator(imgUrl) {
-    // create element
-    const img_wrap = document.createElement("div");
-    img_wrap.classList.add("img-wrap");
-    // img component
-    const img_tag = document.createElement("img");
-    img_tag.src = imgUrl;
-    // push child to ite's parent
-    img_wrap.appendChild(img_tag);
-    return img_wrap;
+function EleCreator(parent, className, type = "div") {
+    const div = document.createElement(type);
+    className ? div.classList.add(className) : null;
+    parent ? parent.appendChild(div) : null;
+    return div;
 }
 
-// screen slider
-function Slider(parentTag, imgUrlList) {
-    const sliderContainer = parentTag.querySelector(".slider-container");
-    const sliderImgWrap = parentTag.querySelector(".slider-wrap");
-    // set wrapper width
-    if (sliderImgWrap) {
-        sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
-        sliderImgWrap.style.paddingBottom = `67%`;
-        sliderImgWrap.style.height = `0`;
+function CreateImgGallery() {
+    const bodyTag = document.querySelector("body");
+    // image gallery slider for small screen -----------------------
+    const imageGallery = EleCreator(bodyTag, "img-gallery", "div");
+    // console.log(bodyTag);
+    const smImgListSlider = EleCreator(imageGallery, "");
+    smImgListSlider.classList.add("slider", "sm-img-list-slider");
 
-        // load img
+    // slider container
+    const gallerySliderContainer = EleCreator(
+        smImgListSlider,
+        "slider-container"
+    );
+    // slider wrap
+    const gallerySliderWrap = EleCreator(gallerySliderContainer, "slider-wrap");
+    // pagination
+    const galleryPagination = EleCreator(gallerySliderContainer, "pagination");
+    // append element into slider container
+    gallerySliderContainer
+        .appendChild(gallerySliderWrap)
+        .appendChild(galleryPagination);
+    // pagination buttons
+    // left icon
+    const pagiGallLeftBtn = EleCreator(galleryPagination, "left-btn", "button");
+    const pagiGallLeftBtnIcon = EleCreator(pagiGallLeftBtn, "", "img");
+    pagiGallLeftBtnIcon.src = "./img/icons/left-arrow.png";
+    pagiGallLeftBtnIcon.alt = "slider arrow icon";
+    // left btn
+    // pagiGallLeftBtn.appendChild(pagiGallLeftBtnIcon);
+    // right icon
+    // right btn
+    const pagiGallRightBtn = EleCreator(
+        galleryPagination,
+        "right-btn",
+        "button"
+    );
+    const pagiGallRightBtnIcon = EleCreator(pagiGallRightBtn, "", "img");
+    pagiGallRightBtnIcon.src = "./img/icons/right-arrow.png";
+    pagiGallRightBtnIcon.alt = "slider arrow icon";
+    // large screen image gallery -------------------------------
+    const galleryLgImgList = EleCreator(imageGallery, "");
+    galleryLgImgList.classList.add("img-list", "lg-img-list");
+    // show all button
+    const galleryShowAllBtn = EleCreator(imageGallery, false, "button");
+    galleryShowAllBtn.id = "show-all-photos";
+    const showAllText = document.createTextNode("Show all photos");
+    galleryShowAllBtn.appendChild(showAllText);
 
-        // all img
-        imgUrlList.map((item, index) => {
-            const slidesDiv = document.createElement("div");
-            slidesDiv.classList = "slides";
-            const slideImg = document.createElement("img");
-            slideImg.src = `${item}`;
-            slidesDiv.appendChild(slideImg);
-            sliderImgWrap.appendChild(slidesDiv);
-            // overlay toggler
-            slidesDiv.onclick = () => {
-                OverlayToggler();
-            };
-        });
-        // slider counter ------------------------
-        var counter = 0;
-        //  slide
-        const leftBtn = parentTag.querySelector(".left-btn");
-        const rightBtn = parentTag.querySelector(".right-btn");
-        // move left
-        const moveLeft = () => {
-            if (-(imgUrlList.length - 1) < counter) {
-                --counter;
-            }
-            const allImg = document.querySelectorAll(".slider .slides");
-            allImg.forEach((img) => {
-                img.style.transform = `translateX(${100 * counter}%)`;
-            });
-        };
-        // move right
-        const moveRight = () => {
-            if (!(counter == 0)) {
-                ++counter;
-            }
-            const allImg = document.querySelectorAll(".slider .slides");
-            allImg.forEach((img) => {
-                img.style.transform = `translateX(${100 * counter}%)`;
-            });
-        };
-        // move left on click
-        rightBtn.onclick = function () {
-            moveRight();
-        };
-        // move right on click
-        leftBtn.onclick = function () {
-            moveLeft();
-        };
-    } else {
-        console.log('please create a slider div inside slider-container name slider-wrap')
-    }
+    // over lay page --------------------------
+    const overlayAllImgList = EleCreator(bodyTag, false);
+    overlayAllImgList.classList.add("overlay", "all-img-list");
 
+    const allImgListHeader = EleCreator(overlayAllImgList, "overlay-header");
+    const allImgBtnWrap = EleCreator(allImgListHeader, 'btn-wrap');
+    const allImgBackBtn = EleCreator(allImgBtnWrap, 'back', 'button');
+    allImgBackBtn.id = "overlay-back-btn";
+    const allImgOverlayBack = EleCreator(allImgBackBtn, false, 'img');
+    allImgOverlayBack.src = './img/icons/left-arrow.png';
+    const allImgShareSave = EleCreator(allImgBtnWrap, 'share-save');
+    const shareBtn = EleCreator(allImgShareSave, false, 'button');
+    shareBtn.innerText = 'Share';
+    const saveBtn = EleCreator(allImgShareSave, false, 'button');
+    saveBtn.innerText = 'Save'
+    // all img list img list 
+    const allImgListImgList = EleCreator(overlayAllImgList, 'img-list');
+
+
+    // slider light box --------------------------------------
+    const overlayLightBox = EleCreator(bodyTag, false);
+    overlayLightBox.classList.add("overlay", "light-box");
+    const lightBoxHeader = EleCreator(overlayLightBox, 'overlay-header');
+    const lightBoxBtnWrap = EleCreator(lightBoxHeader, 'btn-wrap');
+    const lightBackBtn = EleCreator(lightBoxBtnWrap, 'back', 'button');
+    lightBackBtn.id = 'light-back-btn';
+    const backBtnImg = EleCreator(lightBackBtn, false, 'img');
+    const shareSave = EleCreator(lightBoxBtnWrap, 'share-save');
+    shareSave.appendChild(saveBtn).appendChild(shareBtn);
+
+    // image list 
+    const lightBoxSlider = EleCreator(overlayLightBox, 'slider');
+    const sliderPagiWrap = EleCreator(lightBoxSlider, 'slider-pagi-wrap');
+    const lightBoxSliderContainer = EleCreator(sliderPagiWrap, 'slider-container');
+    const lightBoxSliderWrap = EleCreator(lightBoxSliderContainer, 'slider-wrap');
+    // light box pagination 
+    const lightBoxPagination = EleCreator(sliderPagiWrap, 'pagination');
+    const lightBoxPagiLeftBtn = EleCreator(lightBoxPagination, 'left-btn', 'button');
+    const lightBoxLeftIcon = EleCreator(lightBoxPagiLeftBtn, false, 'img');
+    lightBoxLeftIcon.src = "./img/icons/left-arrow-white.png";
+    lightBoxLeftIcon.alt = 'slider arrow icon';
+    const lightBoxpagiRightBtn = EleCreator(lightBoxPagination, 'right-box', 'button');
+    const lightBoxRightIcon = EleCreator(lightBoxpagiRightBtn, false, 'img');
+    lightBoxRightIcon.src = "./img/icons/right-arrow-white.png";
+    lightBoxRightIcon.alt = 'slider arrow icon';
 }
 
-// Slider();
-const allSlide = document.querySelectorAll(".slider");
-allSlide.forEach((sliderTag) => {
-    Slider(sliderTag, imageList);
-});
+CreateImgGallery();
 
-// load img into the
-function ProductGallery() {
-    const imgGallery = document.querySelector(".img-gallery");
-    const highlightImg = imageList.slice(0, 5);
-    highlightImg.map((img, index) => {
-        const parentTag = document.querySelector(".img-gallery .lg-img-list");
-        const imgWrap = ImgCreator(img, ".img-gallery .lg-img-list");
-        // click handler
-        imgWrap.onclick = function () {
-            OverlayToggler();
-        };
-        // push img wrap inside parent
-        parentTag.appendChild(imgWrap);
-    });
-}
+// // js functionality ------------------------------------------------------------------------------
 
-// overlay page on click ----------------------
-function OverlayImgLoader() {
-    const overlay = document.querySelector(".overlay");
-    const overlayImgList = overlay.querySelector(".img-list");
-    // large img number
-    const largeImgIndex = [];
-    for (let i = 1; i <= imageList.length; i += 3) {
-        largeImgIndex.push(i);
-    }
-    imageList.map((image, index) => {
-        const imgWrap = ImgCreator(image);
-        imgWrap.onclick = () => {
-            LightBoxToggler();
-        }
-        // if (index === index+)
-        if (Boolean(largeImgIndex.find((num) => num === index + 1))) {
-            imgWrap.style.gridColumn = "span 2";
-            imgWrap.style.gridRow = "span 2";
-        }
-        overlayImgList.appendChild(imgWrap);
-    });
-}
+// // global state
+// var showOverlay = false;
+// var showLightBox = false;
+// // image galllery -----------------------
+// // elements
+// const showAllBtn = document.querySelector("#show-all-photos");
 
-// overlay toggler  --------------------------------------
-// overlay back button
-function overlayBackBtn() {
-    const backbtn = document.querySelector("#overlay-back-btn");
-    const showAllPhotos = document.querySelector("#show-all-photos");
-    [backbtn, showAllPhotos].map((btn) => {
-        btn.onclick = function () {
-            OverlayToggler();
-        };
-    });
-}
+// // this function create img tag and append
+// function ImgCreator(imgUrl) {
+//     // create element
+//     const img_wrap = document.createElement("div");
+//     img_wrap.classList.add("img-wrap");
+//     // img component
+//     const img_tag = document.createElement("img");
+//     img_tag.src = imgUrl;
+//     // push child to ite's parent
+//     img_wrap.appendChild(img_tag);
+//     return img_wrap;
+// }
 
-overlayBackBtn();
+// // screen slider
+// function Slider(parentTag, imgUrlList) {
+//     const sliderContainer = parentTag.querySelector(".slider-container");
+//     const sliderImgWrap = parentTag.querySelector(".slider-wrap");
+//     // set wrapper width
+//     if (sliderImgWrap) {
+//         sliderImgWrap.style.width = `${imgUrlList.length * 100}%`;
+//         sliderImgWrap.style.paddingBottom = `67%`;
+//         sliderImgWrap.style.height = `0`;
 
-function OverlayToggler() {
-    const overlay = document.querySelector(".overlay");
-    // back button
+//         // load img
 
-    // controller
-    if (showOverlay) {
-        overlay.classList.remove("active");
-        showOverlay = false;
-        setTimeout(() => {
-            overlay.style.display = "none";
-        }, 400);
-    } else {
-        showOverlay = true;
-        overlay.style.display = "grid";
-        setTimeout(() => {
-            overlay.classList.add("active");
-        }, 10);
-    }
-}
+//         // all img
+//         imgUrlList.map((item, index) => {
+//             const slidesDiv = document.createElement("div");
+//             slidesDiv.classList = "slides";
+//             const slideImg = document.createElement("img");
+//             slideImg.src = `${item}`;
+//             slidesDiv.appendChild(slideImg);
+//             sliderImgWrap.appendChild(slidesDiv);
+//             // overlay toggler
+//             slidesDiv.onclick = () => {
+//                 OverlayToggler();
+//             };
+//         });
+//         // slider counter ------------------------
+//         var counter = 0;
+//         //  slide
+//         console.log('parent tag', parentTag)
+//         const leftBtn = parentTag.querySelector(".left-btn");
+//         const rightBtn = parentTag.querySelector(".right-btn");
+//         // move left
+//         const moveLeft = () => {
+//             if (-(imgUrlList.length - 1) < counter) {
+//                 --counter;
+//             }
+//             const allImg = document.querySelectorAll(".slider .slides");
+//             allImg.forEach((img) => {
+//                 img.style.transform = `translateX(${100 * counter}%)`;
+//             });
+//         };
+//         // move right
+//         const moveRight = () => {
+//             if (!(counter == 0)) {
+//                 ++counter;
+//             }
+//             const allImg = document.querySelectorAll(".slider .slides");
+//             allImg.forEach((img) => {
+//                 img.style.transform = `translateX(${100 * counter}%)`;
+//             });
+//         };
+//         // move left on click
+//         rightBtn.onclick = function () {
+//             moveRight();
+//         };
+//         // move right on click
+//         leftBtn.onclick = function () {
+//             moveLeft();
+//         };
+//     } else {
+//         console.log(
+//             "please create a slider div inside slider-container name slider-wrap"
+//         );
+//     }
+// }
 
+// // Slider();
+// const allSlide = document.querySelectorAll(".slider");
+// allSlide.forEach((sliderTag) => {
+//     Slider(sliderTag, imageList);
+// });
 
-function LightBoxBackBtn() {
-    const backbtn = document.querySelector("#light-back-btn");
-    backbtn.onclick = function () {
-        LightBoxToggler();
-    }
-}
+// // load img into the
+// function ProductGallery() {
+//     const imgGallery = document.querySelector(".img-gallery");
+//     const highlightImg = imageList.slice(0, 5);
+//     highlightImg.map((img, index) => {
+//         const parentTag = document.querySelector(".img-gallery .lg-img-list");
+//         const imgWrap = ImgCreator(img, ".img-gallery .lg-img-list");
+//         // click handler
+//         imgWrap.onclick = function () {
+//             OverlayToggler();
+//         };
+//         // push img wrap inside parent
+//         parentTag.appendChild(imgWrap);
+//     });
+// }
 
-LightBoxBackBtn();
+// // overlay page on click ----------------------
+// function OverlayImgLoader() {
+//     const overlay = document.querySelector(".overlay");
+//     const overlayImgList = overlay.querySelector(".img-list");
+//     // large img number
+//     const largeImgIndex = [];
+//     for (let i = 1; i <= imageList.length; i += 3) {
+//         largeImgIndex.push(i);
+//     }
+//     imageList.map((image, index) => {
+//         const imgWrap = ImgCreator(image);
+//         imgWrap.onclick = () => {
+//             LightBoxToggler();
+//         };
+//         // if (index === index+)
+//         if (Boolean(largeImgIndex.find((num) => num === index + 1))) {
+//             imgWrap.style.gridColumn = "span 2";
+//             imgWrap.style.gridRow = "span 2";
+//         }
+//         overlayImgList.appendChild(imgWrap);
+//     });
+// }
 
+// // overlay toggler  --------------------------------------
+// // overlay back button
+// function overlayBackBtn() {
+//     const backbtn = document.querySelector("#overlay-back-btn");
+//     const showAllPhotos = document.querySelector("#show-all-photos");
+//     [backbtn, showAllPhotos].map((btn) => {
+//         btn.onclick = function () {
+//             OverlayToggler();
+//         };
+//     });
+// }
 
-function LightBoxToggler() {
-    const lightBox = document.querySelector(".light-box");
-    // back button
+// overlayBackBtn();
 
-    // controller
-    if (showLightBox) {
-        lightBox.classList.remove("active");
-        showLightBox = false;
-        setTimeout(() => {
-            lightBox.style.display = "none";
-        }, 400);
-    } else {
-        showLightBox = true;
-        lightBox.style.display = "grid";
-        setTimeout(() => {
-            lightBox.classList.add("active");
-        }, 10);
-    }
-}
+// function OverlayToggler() {
+//     const overlay = document.querySelector(".overlay");
+//     // back button
 
+//     // controller
+//     if (showOverlay) {
+//         overlay.classList.remove("active");
+//         showOverlay = false;
+//         setTimeout(() => {
+//             overlay.style.display = "none";
+//         }, 400);
+//     } else {
+//         showOverlay = true;
+//         overlay.style.display = "grid";
+//         setTimeout(() => {
+//             overlay.classList.add("active");
+//         }, 10);
+//     }
+// }
 
-ProductGallery();
-OverlayImgLoader();
+// function LightBoxBackBtn() {
+//     const backbtn = document.querySelector("#light-back-btn");
+//     backbtn.onclick = function () {
+//         LightBoxToggler();
+//     };
+// }
+
+// LightBoxBackBtn();
+
+// function LightBoxToggler() {
+//     const lightBox = document.querySelector(".light-box");
+//     // back button
+
+//     // controller
+//     if (showLightBox) {
+//         lightBox.classList.remove("active");
+//         showLightBox = false;
+//         setTimeout(() => {
+//             lightBox.style.display = "none";
+//         }, 400);
+//     } else {
+//         showLightBox = true;
+//         lightBox.style.display = "grid";
+//         setTimeout(() => {
+//             lightBox.classList.add("active");
+//         }, 10);
+//     }
+// }
+
+// ProductGallery();
+// OverlayImgLoader();
