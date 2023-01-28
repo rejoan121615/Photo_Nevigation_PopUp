@@ -30,7 +30,18 @@ const imageList = [
     "img/prod-img- (28).webp",
 ];
 
-// html markup creator
+
+// your mount point 
+const mountPoint = 'body' // please use css selector
+
+// slider arrow icons replace your arrow icon here 
+const leftBlackArrow = "./img/icons/left-arrow.png";
+const rightBlackArrow = "./img/icons/right-arrow.png";
+const leftWhiteArrow = "./img/icons/left-arrow-white.png";
+const rightWhiteArrow = "./img/icons/right-arrow-white.png"
+
+
+// html markup creator ----------------------------------------------------------------------------
 
 function EleCreator(parent, className, type = "div") {
     const div = document.createElement(type);
@@ -40,7 +51,7 @@ function EleCreator(parent, className, type = "div") {
 }
 
 function CreateImgGallery() {
-    const bodyTag = document.querySelector("body");
+    const bodyTag = document.querySelector(mountPoint);
     // image gallery slider for small screen -----------------------
     const imageGallery = EleCreator(bodyTag, "img-gallery", "div");
     // console.log(bodyTag);
@@ -64,7 +75,7 @@ function CreateImgGallery() {
     // left icon
     const pagiGallLeftBtn = EleCreator(galleryPagination, "left-btn", "button");
     const pagiGallLeftBtnIcon = EleCreator(pagiGallLeftBtn, "", "img");
-    pagiGallLeftBtnIcon.src = "./img/icons/left-arrow.png";
+    pagiGallLeftBtnIcon.src = leftBlackArrow;
     pagiGallLeftBtnIcon.alt = "slider arrow icon";
     // left btn
     // pagiGallLeftBtn.appendChild(pagiGallLeftBtnIcon);
@@ -76,7 +87,7 @@ function CreateImgGallery() {
         "button"
     );
     const pagiGallRightBtnIcon = EleCreator(pagiGallRightBtn, "", "img");
-    pagiGallRightBtnIcon.src = "./img/icons/right-arrow.png";
+    pagiGallRightBtnIcon.src = rightBlackArrow;
     pagiGallRightBtnIcon.alt = "slider arrow icon";
     // large screen image gallery -------------------------------
     const galleryLgImgList = EleCreator(imageGallery, "");
@@ -96,7 +107,7 @@ function CreateImgGallery() {
     const allImgBackBtn = EleCreator(allImgBtnWrap, "back", "button");
     allImgBackBtn.id = "overlay-back-btn";
     const allImgOverlayBack = EleCreator(allImgBackBtn, false, "img");
-    allImgOverlayBack.src = "./img/icons/left-arrow.png";
+    allImgOverlayBack.src = leftBlackArrow;
     const allImgShareSave = EleCreator(allImgBtnWrap, "share-save");
     const shareBtn = EleCreator(allImgShareSave, false, "button");
     shareBtn.innerText = "Share";
@@ -113,6 +124,7 @@ function CreateImgGallery() {
     const lightBackBtn = EleCreator(lightBoxBtnWrap, "back", "button");
     lightBackBtn.id = "light-back-btn";
     const backBtnImg = EleCreator(lightBackBtn, false, "img");
+    backBtnImg.src = leftWhiteArrow;
     const shareSave = EleCreator(lightBoxBtnWrap, "share-save");
     shareSave.appendChild(saveBtn).appendChild(shareBtn);
 
@@ -135,7 +147,7 @@ function CreateImgGallery() {
         "button"
     );
     const lightBoxLeftIcon = EleCreator(lightBoxPagiLeftBtn, false, "img");
-    lightBoxLeftIcon.src = "./img/icons/left-arrow-white.png";
+    lightBoxLeftIcon.src =  leftWhiteArrow;
     lightBoxLeftIcon.alt = "slider arrow icon";
     const lightBoxpagiRightBtn = EleCreator(
         lightBoxPagination,
@@ -143,7 +155,7 @@ function CreateImgGallery() {
         "button"
     );
     const lightBoxRightIcon = EleCreator(lightBoxpagiRightBtn, false, "img");
-    lightBoxRightIcon.src = "./img/icons/right-arrow-white.png";
+    lightBoxRightIcon.src = rightWhiteArrow;
     lightBoxRightIcon.alt = "slider arrow icon";
 }
 
