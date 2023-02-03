@@ -30,16 +30,14 @@ const imageList = [
     "img/prod-img- (28).webp",
 ];
 
+// your mount point
+const mountPoint = "body"; // please use css selector
 
-// your mount point 
-const mountPoint = 'body' // please use css selector
-
-// slider arrow icons replace your arrow icon here 
+// slider arrow icons replace your arrow icon here
 const leftBlackArrow = "./img/icons/left-arrow.png";
 const rightBlackArrow = "./img/icons/right-arrow.png";
 const leftWhiteArrow = "./img/icons/left-arrow-white.png";
-const rightWhiteArrow = "./img/icons/right-arrow-white.png"
-
+const rightWhiteArrow = "./img/icons/right-arrow-white.png";
 
 // html markup creator ----------------------------------------------------------------------------
 
@@ -147,7 +145,7 @@ function CreateImgGallery() {
         "button"
     );
     const lightBoxLeftIcon = EleCreator(lightBoxPagiLeftBtn, false, "img");
-    lightBoxLeftIcon.src =  leftWhiteArrow;
+    lightBoxLeftIcon.src = leftWhiteArrow;
     lightBoxLeftIcon.alt = "slider arrow icon";
     const lightBoxpagiRightBtn = EleCreator(
         lightBoxPagination,
